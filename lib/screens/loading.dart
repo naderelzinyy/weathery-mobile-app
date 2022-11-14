@@ -20,6 +20,12 @@ void findLocation() async {
 
 class _LoadingScreenState extends State<LoadingScreen> {
   @override
+  void initState() {
+    super.initState();
+    findLocation();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
