@@ -25,13 +25,22 @@ class _LocationScreenState extends State<LocationScreen> {
     updateUI(widget.locationWeather);
   }
 
-  void updateUI(dynamic weatherData) {
+  void updateUI(dynamic weatherInfo) {
     setState(() {
-      temperature = weatherData['main']['temp'].toInt();
+      if (weatherInfo == null ||
+          (weatherInfo['coord']['lon'] == 0 &&
+              weatherInfo['coord']['lat'] == 0)) {
+        temperature = 0;
+        temperatureMessage = "'Couldn't get weather data.";
+        conditionIcon = '🚫';
+        cityName = ' ';
+        return;
+      }
+      temperature = weatherInfo['main']['temp'].toInt();
       temperatureMessage = weatherModel.getMessage(temperature);
-      int condition = weatherData['weather'][0]['id'];
+      int condition = weatherInfo['weather'][0]['id'];
       conditionIcon = weatherModel.getWeatherIcon(condition);
-      cityName = weatherData['name'];
+      cityName = weatherInfo['name'];
     });
   }
 
