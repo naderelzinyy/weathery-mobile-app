@@ -13,10 +13,11 @@ class _LocationScreenState extends State<LocationScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: const AssetImage('images/location_background.jpg'),
+            image: const NetworkImage(
+                'https://images.unsplash.com/photo-1498015583783-4abcab4a760a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTgwOTN8MHwxfHNlYXJjaHw0Mnx8Y2xvdWRzfGVufDB8fHx8MTY2ODUwNzc2Nw&ixlib=rb-4.0.3&q=80&w=1080'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.8), BlendMode.dstATop),
+                Colors.white.withOpacity(0.6), BlendMode.dstATop),
           ),
         ),
         constraints: const BoxConstraints.expand(),
