@@ -1,12 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:weathery/services/weather.dart';
 import 'package:weathery/utilities/constants.dart';
 
 class LocationScreen extends StatefulWidget {
+  LocationScreen({this.locationWeather});
+
+  final locationWeather;
+
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  late int temperature;
+  late String temperatureMessage;
+  late String conditionIcon;
+  late String cityName;
+  WeatherModel weatherModel = WeatherModel();
+
+  @override
+  void initState() {
+    super.initState();
+    print(widget.locationWeather);
+    updateUI(widget.locationWeather);
+  }
+
+  void updateUI(dynamic weatherData) {
+    temperature = weatherData['main']['temp'].toInt();
+    temperatureMessage = weatherModel.getMessage(temperature);
+    int condition = weatherData['weather'][0]['id'];
+    conditionIcon = weatherModel.getWeatherIcon(condition);
+    cityName = weatherData['name'];
+    print(temperature);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,15 +73,15 @@ class _LocationScreenState extends State<LocationScreen> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(left: 15.0),
+                padding: const EdgeInsets.only(left: 15.0),
                 child: Row(
                   children: <Widget>[
                     Text(
-                      '32°',
+                      '$temperature°',
                       style: kTempTextStyle,
                     ),
                     Text(
-                      '☀️',
+                      conditionIcon,
                       style: kConditionTextStyle,
                     ),
                   ],
@@ -63,7 +90,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: EdgeInsets.only(right: 15.0),
                 child: Text(
-                  "It's 🍦 time in San Francisco!",
+                  '$temperatureMessage in $cityName',
                   textAlign: TextAlign.right,
                   style: kMessageTextStyle,
                 ),
