@@ -114,7 +114,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 15.0),
+                padding: const EdgeInsets.only(right: 15.0),
                 child: Text(
                   '$temperatureMessage in $cityName',
                   textAlign: TextAlign.right,
