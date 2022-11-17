@@ -11,10 +11,13 @@ class _CityScreenState extends State<CityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/city_background.jpg'),
+            image: const AssetImage(
+                'images/taylor-van-riper-yQorCngxzwI-unsplash.jpeg'),
             fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+                Colors.white.withOpacity(0.6), BlendMode.dstATop),
           ),
         ),
         constraints: const BoxConstraints.expand(),
