@@ -32,7 +32,7 @@ class _LocationScreenState extends State<LocationScreen> {
           (weatherInfo['coord']['lon'] == 0 &&
               weatherInfo['coord']['lat'] == 0)) {
         temperature = 0;
-        temperatureMessage = "'Couldn't get weather data.";
+        temperatureMessage = "Couldn't get weather data";
         conditionIcon = '🚫';
         cityName = ' ';
         return;
